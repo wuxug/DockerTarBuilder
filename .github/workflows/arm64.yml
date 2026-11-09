@@ -16,7 +16,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Pull Docker Images and Package
+    - name: {image_name} and Package
       run: |
         images="${{ github.event.inputs.docker_images }}"
           IFS=',' read -r -a image_array <<< "$images"
@@ -32,7 +32,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ${image_name}
+        name: artifact
         path: ${{ github.workspace }}/*.tar.gz
         retention-days: 30  # 将保留天数设置为 1 天 最多可设置90天
 
